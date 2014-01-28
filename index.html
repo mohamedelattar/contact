@@ -1,0 +1,61 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Contact Form</title> 
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.css" />
+	<link rel="stylesheet" href="css/colors.css">
+  <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.0a2/jquery.mobile-1.0a2.min.js"></script>
+  </head>
+<body>
+	<div data-role="page" id="page">
+		<!-- The 'logo' DIV below was added to the default markup -->
+		<div class="logo"></div>
+		<div data-role="header" class="heading">
+			<h1>Cairo Airport Transfers</h1>
+		</div>
+		<div data-role="content">	
+			<form action="http://egyptdaytours.com/tester/tester.php" method="get">
+			<input type="text" name="FirstName" value="FirstName">
+			<input type="text" name="LastName" value="LastName">
+			<input type="text" name="Email" value="Email">
+			<input type="text" name="MessageText" value="Telephone">
+			<input type="button" onclick="submit()" value="Book Now"/>
+			</form>
+
+		</div>
+		<div data-role="footer">
+			<h4>&copy;2011 &bull;Egypt Transfers</h4>
+		</div>
+	</div>
+
+	<script>
+		$.post('https://egyptdaytours.com/tester/tester.php', {
+		
+			// These are the names of the form values
+		
+			FirstName: $('#FirstName_input').val(),
+			LastName: $('#LastName_input').val(),
+			Email: $('#Email_input').val(),
+			MessageText: $('#MessageText_input').val()
+		
+			// HTML function
+		
+			}, function (html) {
+				// Place the HTML in a astring
+				var response=html;
+		
+				// PHP was done and email sent
+				if (response=="success") {
+					alert("Message sent!"); 
+				} else {
+		
+					// Error postback
+					alert("Sorry please fill all fields!"); 
+				return false;
+			}
+		});
+	</script>
+</body>
+</html> 
